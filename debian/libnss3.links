@@ -1,0 +1,3 @@
+#!/usr/bin/dh-exec
+usr/lib/${DEB_HOST_MULTIARCH}/nss/libfreebl3.so usr/lib/${DEB_HOST_MULTIARCH}/libfreebl3.so
+usr/lib/${DEB_HOST_MULTIARCH}/nss/libfreeblpriv3.so usr/lib/${DEB_HOST_MULTIARCH}/libfreeblpriv3.so

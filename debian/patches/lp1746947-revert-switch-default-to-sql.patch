@@ -1,0 +1,68 @@
+From 33b114e38278c4ffbb6b244a0ebc9910e5245cd3 Mon Sep 17 00:00:00 2001
+From: Kai Engert <kaie@kuix.de>
+Date: Fri, 24 Nov 2017 19:43:14 +0100
+Subject: [PATCH] Bug 1377940, Change NSS default storage file format
+ (currently DBM), when no prefix is given, to SQL, r=rrelyea, r=fkiefer
+
+Forwarded: no (backporti reverted)
+Author: Christian Ehrhardt <christian.ehrhardt@canonical.com>
+Original-Author: Kai Engert <kaie@kuix.de>
+Origin: upstream, https://github.com/nss-dev/nss/commit/33b114e38278c4ffbb6b244a0ebc9910e5245cd3
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1746947
+Last-Update: 2018-02-05
+
+---
+ lib/util/utilpars.c  | 6 +-----
+ tests/all.sh         | 5 ++++-
+ tests/merge/merge.sh | 2 +-
+ 3 files changed, 6 insertions(+), 7 deletions(-)
+
+--- a/nss/lib/util/utilpars.c
++++ b/nss/lib/util/utilpars.c
+@@ -1111,8 +1111,12 @@ _NSSUTIL_EvaluateConfigDir(const char *c
+     NSSDBType dbType;
+     PRBool checkEnvDefaultDB = PR_FALSE;
+     *appName = NULL;
+-    /* force the default */
++/* force the default */
++#ifdef NSS_DISABLE_DBM
+     dbType = NSS_DB_TYPE_SQL;
++#else
++    dbType = NSS_DB_TYPE_LEGACY;
++#endif
+     if (configdir == NULL) {
+         checkEnvDefaultDB = PR_TRUE;
+     } else if (PORT_Strncmp(configdir, MULTIACCESS, sizeof(MULTIACCESS) - 1) == 0) {
+--- a/nss/tests/all.sh
++++ b/nss/tests/all.sh
+@@ -111,8 +111,6 @@ RUN_FIPS=""
+ ########################################################################
+ run_tests()
+ {
+-    echo "Running test cycle: ${TEST_MODE} ----------------------"
+-    echo "List of tests that will be executed: ${TESTS}"
+     for TEST in ${TESTS}
+     do
+         # NOTE: the spaces are important. If you don't include
+@@ -174,9 +172,8 @@ run_cycle_pkix()
+     NSS_SSL_TESTS=`echo "${NSS_SSL_TESTS}" | sed -e "s/normal//g" -e "s/fips//g" -e "s/_//g"`
+     export -n NSS_SSL_RUN
+ 
+-    # use the default format. (unset for the shell, export -n for binaries)
++    # use the default format
+     export -n NSS_DEFAULT_DB_TYPE
+-    unset NSS_DEFAULT_DB_TYPE
+ 
+     run_tests
+ }
+--- a/nss/tests/merge/merge.sh
++++ b/nss/tests/merge/merge.sh
+@@ -98,7 +98,7 @@ merge_init()
+   # are dbm databases.
+   if [ "${TEST_MODE}" = "UPGRADE_DB" ]; then
+ 	save=${NSS_DEFAULT_DB_TYPE}
+-	NSS_DEFAULT_DB_TYPE=dbm ; export NSS_DEFAULT_DB_TYPE
++	NSS_DEFAULT_DB_TYPE= ; export NSS_DEFAULT_DB_TYPE
+   fi
+ 
+   certutil -N -d ${CONFLICT1DIR} -f ${R_PWFILE}
