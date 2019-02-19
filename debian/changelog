@@ -1,3 +1,16 @@
+nss (2:3.35-2ubuntu2.2) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: DoS in NULL pointer dereference in CMS functions
+    - debian/patches/CVE-2018-18508-1.patch: add null checks in
+      nss/lib/smime/cmscinfo.c, nss/lib/smime/cmsdigdata.c,
+      nss/lib/smime/cmsencdata.c, nss/lib/smime/cmsenvdata.c,
+      nss/lib/smime/cmsmessage.c, nss/lib/smime/cmsudf.c.
+    - debian/patches/CVE-2018-18508-2.patch: add null checks in
+      nss/lib/smime/cmsmessage.c.
+    - CVE-2018-18508
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 19 Feb 2019 13:38:25 +0100
+
 nss (2:3.35-2ubuntu2.1) bionic-security; urgency=medium
 
   * SECURITY UPDATE: side-channel attack on ECDSA signatures
