@@ -1,3 +1,22 @@
+nss (2:3.35-2ubuntu2.3) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: OOB read when importing a curve25519 private key
+    - debian/patches/CVE-2019-11719.patch: don't unnecessarily strip
+      leading 0's from key material during PKCS11 import in
+      nss/lib/freebl/ecl/ecp_25519.c, nss/lib/pk11wrap/pk11akey.c,
+      nss/lib/pk11wrap/pk11cert.c, nss/lib/pk11wrap/pk11pk12.c,
+      nss/lib/softoken/legacydb/lgattr.c, nss/lib/softoken/pkcs11c.c.
+    - CVE-2019-11719
+  * SECURITY UPDATE: segfault via empty or malformed p256-ECDH public keys
+    - debian/patches/CVE-2019-11729-1.patch: more thorough input checking
+      in nss/lib/cryptohi/seckey.c, nss/lib/freebl/dh.c,
+      nss/lib/freebl/ec.c, nss/lib/util/quickder.c.
+    - debian/patches/CVE-2019-11729-2.patch: ignore spki decode failures on
+      negative tests in nss/gtests/pk11_gtest/pk11_curve25519_unittest.cc.
+    - CVE-2019-11729
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 12 Jul 2019 08:16:27 -0400
+
 nss (2:3.35-2ubuntu2.2) bionic-security; urgency=medium
 
   * SECURITY UPDATE: DoS in NULL pointer dereference in CMS functions
