@@ -1,3 +1,14 @@
+nss (2:3.35-2ubuntu2.5) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: out-of-bounds write in NSC_EncryptUpdate
+    - debian/patches/CVE-2019-11745.patch: use maxout not block size in
+      nss/lib/softoken/pkcs11c.c.
+    - CVE-2019-11745
+  * Note: this does _not_ contain the changes from 2:3.35-2ubuntu2.4 in
+    disco-proposed.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 26 Nov 2019 08:53:05 -0500
+
 nss (2:3.35-2ubuntu2.3) bionic-security; urgency=medium
 
   * SECURITY UPDATE: OOB read when importing a curve25519 private key
