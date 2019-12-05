@@ -1,3 +1,15 @@
+nss (2:3.35-2ubuntu2.6) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: Denial of service
+    - debian/patches/CVE-2019-17007.patch: check got some certs in
+      collect_certs r=jcj in nss/lib/pkcs7/certread.c,
+      gtests/certdb_gtest/certdb_gtest.gyp,
+      gtests/certdb_gtest/decode_certs_unittest.cc,
+      gtests/certdb_gtest/manifest.mn.
+    - CVE-2019-17007
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Thu, 05 Dec 2019 13:37:32 -0300
+
 nss (2:3.35-2ubuntu2.5) bionic-security; urgency=medium
 
   * SECURITY UPDATE: out-of-bounds write in NSC_EncryptUpdate
