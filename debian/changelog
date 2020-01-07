@@ -1,3 +1,15 @@
+nss (2:3.35-2ubuntu2.7) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: Possible wrong length for cryptographic primitives input
+    - debian/patches/CVE-2019-17006.patch: adds checks for length of crypto
+      primitives in nss/lib/freebl/chacha20poly1305.c,
+      nss/lib/freebl/ctr.c, nss/lib/freebl/gcm.c,
+      nss/lib/freebl/intel-gcm-wrap.c,
+      nss/lib/freebl/rsapkcs.c.
+    - CVE-2019-17006
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Tue, 07 Jan 2020 14:55:38 -0300
+
 nss (2:3.35-2ubuntu2.6) bionic-security; urgency=medium
 
   * SECURITY UPDATE: Denial of service
