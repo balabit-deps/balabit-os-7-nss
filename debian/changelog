@@ -1,3 +1,19 @@
+nss (2:3.35-2ubuntu2.8) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: invalid state after HelloRetryRequest
+    - debian/patches/CVE-2019-17023-1.patch: prevent negotiation of
+      versions lower than 1.3 after HelloRetryRequest in
+      nss/lib/ssl/ssl3con.c, nss/lib/ssl/tls13con.c.
+    - debian/patches/CVE-2019-17023-2.patch: add new tests for version
+      limitations after a HRR in nss/gtests/ssl_gtest/ssl_hrr_unittest.cc.
+    - CVE-2019-17023
+  * SECURITY UPDATE: Timing attack during DSA key generation
+    - debian/patches/CVE-2020-12399.patch: force a fixed length for DSA
+      exponentiation in nss/lib/freebl/dsa.c.
+    - CVE-2020-12399
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 10 Jun 2020 13:04:22 -0400
+
 nss (2:3.35-2ubuntu2.7) bionic-security; urgency=medium
 
   * SECURITY UPDATE: Possible wrong length for cryptographic primitives input
