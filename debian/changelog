@@ -1,3 +1,13 @@
+nss (2:3.35-2ubuntu2.9) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: Side channel vulnerabilities during RSA key generation
+    - debian/patches/CVE-2020-12402.patch: use constant-time GCD and
+      modular inversion in nss/lib/freebl/mpi/mpi.c,
+      nss/lib/freebl/mpi/mpi.h, nss/lib/freebl/mpi/mplogic.c.
+    - CVE-2020-12402
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 22 Jun 2020 13:36:28 -0400
+
 nss (2:3.35-2ubuntu2.8) bionic-security; urgency=medium
 
   * SECURITY UPDATE: invalid state after HelloRetryRequest
