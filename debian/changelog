@@ -1,3 +1,25 @@
+nss (2:3.35-2ubuntu2.11) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: Side-channel attack
+    - debian/patches/CVE-2020-12400-and-6829-*.patch: use constant-time
+      P-384 and P-521 in nss/lib/freebl/ecl/ecl-priv.h, nss/lib/freebl/ecl/ecl.c,
+      nss/lib/freebl/ecl/ecl_spec384r1.c, nss/lib/freebl/freebl_base.gypi,
+      nss/lib/freebl/manifest.mn, nss/test/ec/ectest.sh.
+    - CVE-2020-12400
+    - CVE-2020-6829
+  * SECURITY UPDATE: Timing attack mitigation bypass
+    - debian/patches/CVE-2020-12401.patch: remove unnecessary scalar
+      padding in nss/lib/freebl/ec.c.
+    - CVE-2020-12401
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Wed, 05 Aug 2020 15:58:41 -0300
+
+nss (2:3.35-2ubuntu2.10) bionic; urgency=medium
+
+  * Symlink chk files to fix self-verification in FIPS mode (LP: #1885562)
+
+ -- Dariusz Gadomski <dgadomski@ubuntu.com>  Tue, 21 Jul 2020 09:37:37 +0200
+
 nss (2:3.35-2ubuntu2.9) bionic-security; urgency=medium
 
   * SECURITY UPDATE: Side channel vulnerabilities during RSA key generation
