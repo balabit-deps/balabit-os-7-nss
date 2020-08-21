@@ -1,3 +1,12 @@
+nss (2:3.35-2ubuntu2.12) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds read
+    - debian/patches/CVE-2020-12403-2.patch: fix incorrect call to ChaChaPoly1305 by PKCS11
+      in nss/lib/freebl/chacha20poly1305.c.
+    - CVE-2020-12403
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Fri, 21 Aug 2020 13:32:01 -0300
+
 nss (2:3.35-2ubuntu2.11) bionic-security; urgency=medium
 
   * SECURITY UPDATE: Side-channel attack
